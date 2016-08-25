@@ -9,13 +9,13 @@ const PostCssImportPlugin = require('postcss-import')
 const PostCssUrlPlugin = require('postcss-url')
 const PostCssNextPlugin = require('postcss-cssnext')
 const PostCssReporterPlugin = require('postcss-reporter')
-const ManifestPlugin = require('webpack-manifest-plugin')
 
 const assets = require('./assets')
 
 const definePlugin = new webpack.DefinePlugin({
-	__DEV__: build === 'development',
-	__PROD__: build === 'production',
+	__ENV__,
+	__DEV__: __ENV__ === 'development',
+	__PROD__: __ENV__ === 'production',
 
 	__APP__: false,
 	__SERVER__: false,
@@ -23,7 +23,6 @@ const definePlugin = new webpack.DefinePlugin({
 	__IOS__: false,
 	__ANDROID__: false,
 
-	__ENV__: __ENV__,
 	'process.env.NODE_ENV': __ENV__,
 })
 
@@ -100,7 +99,18 @@ const config = {
 			new PostCssReporterPlugin(),
 		]
 	},
-	plugins: [],
+	plugins: [
+		definePlugin,
+		extractPlugin,
+		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.optimize.UglifyJsPlugin({
+			mangle: true,
+			compress: {
+				warnings: false,
+			},
+		}),
+	],
 	resolve: {
 		root: [
 			path.resolve('./src'),
@@ -113,28 +123,12 @@ const config = {
 	},
 }
 
-if (build === 'development') {
-	config.module.loaders.pop()
-	config.plugins.push(definePlugin, extractPlugin)
+if (__ENV__ === 'development') {
+	config.plugins = [definePlugin, extractPlugin]
 
 	config.devtool = 'source-map'
 	config.debug = true
 
 	cssName = 'bundle.css'
 	config.output.filename = 'bundle.js'
-} else if (build === 'production') {
-
-	config.plugins.push(
-		definePlugin,
-		extractPlugin,
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.OccurenceOrderPlugin(),
-		new webpack.optimize.UglifyJsPlugin({
-			mangle: true,
-			compress: {
-				warnings: false,
-			},
-		}),
-		ExitCodePlugin,
-	)
 }

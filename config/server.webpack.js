@@ -9,8 +9,9 @@ const PostCssReporterPlugin = require('postcss-reporter')
 const __ENV__ = 'production'
 
 const definePlugin = new webpack.DefinePlugin({
-	__DEV__: build === 'development',
-	__PROD__: build === 'production',
+	__ENV__,
+	__DEV__: __ENV__ === 'development',
+	__PROD__: __ENV__ === 'production',
 
 	__APP__: false,
 	__SERVER__: true,
@@ -18,7 +19,6 @@ const definePlugin = new webpack.DefinePlugin({
 	__IOS__: false,
 	__ANDROID__: false,
 
-	__ENV__: __ENV__,
 	'process.env.NODE_ENV': __ENV__,
 })
 
@@ -97,7 +97,7 @@ const config = {
 	devtool: 'sourcemap',
 }
 
-if (build === 'development') {
+if (__ENV__ === 'development') {
 	config.devtool = 'source-map'
 	config.debug = true
 }
