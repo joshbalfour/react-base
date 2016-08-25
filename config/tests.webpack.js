@@ -1,0 +1,1 @@
+require.context('../tests/', true, /\.js$/).keys().forEach(testsContext)
