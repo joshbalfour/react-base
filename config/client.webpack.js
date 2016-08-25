@@ -132,3 +132,5 @@ if (__ENV__ === 'development') {
 	cssName = 'bundle.css'
 	config.output.filename = 'bundle.js'
 }
+
+module.exports = config
