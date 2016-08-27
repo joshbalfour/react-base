@@ -92,6 +92,7 @@ const config = {
 		root: [
 			path.resolve(__dirname, '../src'),
 			path.resolve(__dirname, '../src/components'),
+			path.resolve(__dirname, '../src/styles'),
 		],
 		extensions: ['', '.js', '.json', '.css'],
 	},

@@ -115,8 +115,9 @@ const config = {
 		root: [
 			path.resolve('./src'),
 			path.resolve('./src/components'),
+			path.resolve('./src/styles'),
 		],
-		extensions: ['', '.js'],
+		extensions: ['', '.js', '.css'],
 	},
 	node: {
 		fs: 'empty',

@@ -1,0 +1,11 @@
+.fullWidth {
+	width: 100%;
+}
+
+.clearfix {
+	&:after {
+		display: table;
+		content: '';
+		clear: both;
+	}
+}

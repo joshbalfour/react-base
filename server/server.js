@@ -25,5 +25,5 @@ app.use(renderApp)
 const port = 3000
 
 app.listen(port, () => {
-	logger(`==> 👍  Koa Server is listening on port ${port}`)
+	logger(`[${(new Date()).toUTCString()}] 👍  Koa Server is listening on port ${port}`)
 })

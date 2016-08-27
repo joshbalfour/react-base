@@ -1,0 +1,10 @@
+.menu {
+	composes: fullWidth from 'layout';
+	composes: clearfix from 'layout';
+}
+
+.item {
+	float: left;
+	list-style: none;
+	margin-left: 25px;
+}
