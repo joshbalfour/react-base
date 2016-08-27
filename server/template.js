@@ -18,10 +18,9 @@ const htmlTemplate = (
 		<!doctype html>
 		<html lang="en-us">
 			<head>
-				<script type="text/javascript">
+				<script>
 					window.__initialState__ = ${JSON.stringify(transit.toJSON(initialState))}
 				</script>
-				<link href="https://fonts.googleapis.com/css?family=Lato:400,700,300italic,400italic" rel="stylesheet" type="text/css">
 				<link rel="stylesheet" href="${cssUrl}" type="text/css">
 			</head>
 			<body>
