@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 
-
 class Input extends React.Component {
 
 	static propTypes = {
@@ -35,6 +34,5 @@ class Input extends React.Component {
 		</form>
 	)
 }
-
 
 export default Input
