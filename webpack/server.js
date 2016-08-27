@@ -6,7 +6,9 @@ const PostCssUrlPlugin = require('postcss-url')
 const PostCssCssnextPlugin = require('postcss-cssnext')
 const PostCssReporterPlugin = require('postcss-reporter')
 
-const __ENV__ = 'production'
+const __ENV__ = process.env.NODE_ENV || 'production'
+
+console.log(`server ${__ENV__} build`)
 
 const definePlugin = new webpack.DefinePlugin({
 	__ENV__,
@@ -27,7 +29,7 @@ const config = {
 	target: 'node',
 	entry: [
 		'babel-polyfill',
-		'./server/main.js',
+		'./server/server.js',
 	],
 	output: {
 		path: './dist',
@@ -95,6 +97,7 @@ const config = {
 	},
 	externals: [nodeExternals()],
 	devtool: 'sourcemap',
+	cache: true,
 }
 
 if (__ENV__ === 'development') {

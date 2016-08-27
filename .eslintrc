@@ -4,17 +4,18 @@
     "rules": {
       "semi": ["error", "never"],
       "import/no-unresolved": "off",
+      "import/no-named-as-default": "off",
+      "import/no-extraneous-dependencies" : "off",
       "react/jsx-indent-props": ["error", 'tab'],
       "react/jsx-indent": ["error", 'tab'],
+      "react/jsx-filename-extension": "off",
       "indent": ["error", "tab", { "SwitchCase": 1 }],
       "max-len": "off",
-      "no-shadow": ["error"],
+      "no-shadow": ["error", { "allow": ["resolve", "reject", "done", "cb", "e", "err", "error", "mapStateToProps"] }],
       "no-underscore-dangle": ["error"],
       "new-cap": ["error", { "capIsNewExceptions": ["Immutable"] }],
-      "newline-before-return": "error"
-    },
-    "env" : {
-      "jasmine": true
+      "newline-before-return": "error",
+      "generator-star-spacing": 0
     },
     "globals": {
       "require": false,

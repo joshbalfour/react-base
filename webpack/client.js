@@ -1,6 +1,6 @@
-const __ENV__ = 'production'
+const __ENV__ = process.env.NODE_ENV || 'production'
 
-let cssName = 'bundle.[chunkhash].css'
+console.log(`client ${__ENV__} build`)
 
 const webpack = require('webpack')
 const path = require('path')
@@ -9,8 +9,7 @@ const PostCssImportPlugin = require('postcss-import')
 const PostCssUrlPlugin = require('postcss-url')
 const PostCssNextPlugin = require('postcss-cssnext')
 const PostCssReporterPlugin = require('postcss-reporter')
-
-const assets = require('./assets')
+const ManifestPlugin = require('webpack-manifest-plugin')
 
 const definePlugin = new webpack.DefinePlugin({
 	__ENV__,
@@ -22,11 +21,11 @@ const definePlugin = new webpack.DefinePlugin({
 	__CLIENT__: true,
 	__IOS__: false,
 	__ANDROID__: false,
-
-	'process.env.NODE_ENV': __ENV__,
 })
 
-const extractPlugin = new ExtractPlugin(cssName, { allChunks: true, ignoreOrder: true })
+let extractPlugin = new ExtractPlugin('bundle.[chunkhash].css', { allChunks: true, ignoreOrder: true })
+
+const manifestPlugin = new ManifestPlugin({ fileName: 'manifest.json' })
 
 const config = {
 	context: path.resolve('.'),
@@ -34,13 +33,13 @@ const config = {
 	entry: [
 		'babel-polyfill',
 		'./node_modules/normalize.css/normalize.css',
-		'./src/client.js',
+		'./client/index.js',
 		'./src/styles/globals.css',
 	],
 	output: {
 		path: path.resolve('./dist/public'),
 		filename: 'bundle.[chunkhash].js',
-		publicPath: assets.base,
+		publicPath: '',
 	},
 	module: {
 		preLoaders: [
@@ -110,6 +109,7 @@ const config = {
 				warnings: false,
 			},
 		}),
+		manifestPlugin,
 	],
 	resolve: {
 		root: [
@@ -121,16 +121,16 @@ const config = {
 	node: {
 		fs: 'empty',
 	},
+	cache: true,
 }
 
 if (__ENV__ === 'development') {
-	config.plugins = [definePlugin, extractPlugin]
+	extractPlugin = new ExtractPlugin('bundle.dev.css', { allChunks: true, ignoreOrder: true })
+	config.plugins = [definePlugin, extractPlugin, manifestPlugin]
 
 	config.devtool = 'source-map'
 	config.debug = true
-
-	cssName = 'bundle.css'
-	config.output.filename = 'bundle.js'
+	config.output.filename = 'bundle.dev.js'
 }
 
 module.exports = config
