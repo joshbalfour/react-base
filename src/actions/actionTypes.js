@@ -1,0 +1,3 @@
+export default {
+	INPUT_CONTENTS_SET: 'INPUT_CONTENTS_SET',
+}
