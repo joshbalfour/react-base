@@ -49,6 +49,7 @@ const config = {
 				include: [
 					path.resolve('./src'),
 					path.resolve('./client'),
+					path.resolve('./store'),
 				],
 			},
 		],
@@ -60,6 +61,7 @@ const config = {
 				include: [
 					path.resolve('./src'),
 					path.resolve('./client'),
+					path.resolve('./store'),
 				],
 			},
 			{
@@ -115,6 +117,7 @@ const config = {
 		root: [
 			path.resolve('./src'),
 			path.resolve('./src/components'),
+			path.resolve('./store'),
 			path.resolve('./src/styles'),
 		],
 		extensions: ['', '.js', '.css'],

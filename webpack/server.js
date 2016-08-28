@@ -42,6 +42,7 @@ const config = {
 				loader: 'eslint',
 				include: [
 					path.resolve(__dirname, '../src'),
+					path.resolve(__dirname, '../store'),
 					path.resolve(__dirname, '../server'),
 				],
 			},
@@ -54,6 +55,7 @@ const config = {
 				include: [
 					path.resolve(__dirname, '../src'),
 					path.resolve(__dirname, '../server'),
+					path.resolve(__dirname, '../store'),
 				],
 			},
 
@@ -91,6 +93,7 @@ const config = {
 	resolve: {
 		root: [
 			path.resolve(__dirname, '../src'),
+			path.resolve(__dirname, '../store'),
 			path.resolve(__dirname, '../src/components'),
 			path.resolve(__dirname, '../src/styles'),
 		],

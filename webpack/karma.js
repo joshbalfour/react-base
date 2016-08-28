@@ -34,13 +34,17 @@ module.exports = {
 				test: /\.js$/,
 				exclude: [
 					path.resolve(__dirname, '..', 'src/'),
+					path.resolve(__dirname, '..', 'store/'),
 					path.resolve(__dirname, '..', 'node_modules/'),
 				],
 				loader: 'babel',
 			},
 			{
 				test: /\.js$/,
-				include: path.resolve(__dirname, '..', 'src/'),
+				include: [
+					path.resolve(__dirname, '..', 'src/'),
+					path.resolve(__dirname, '..', 'store/'),
+				],
 				loader: 'isparta',
 			},
 		],
@@ -48,7 +52,10 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.js?$/,
-				include: /src/,
+				include: [
+					/src/,
+					/store/,
+				],
 				loader: 'babel-loader',
 			},
 			{
@@ -97,6 +104,7 @@ module.exports = {
 		root: [
 			path.resolve(__dirname, '..', 'src'),
 			path.resolve(__dirname, '..', 'src', 'components'),
+			path.resolve(__dirname, '..', 'store'),
 			path.resolve(__dirname, '..', 'src', 'styles'),
 		],
 		extensions: ['', '.js', '.json', '.css'],
