@@ -1,5 +1,5 @@
 import { browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
+import { routerReducer, routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import routes from 'routes'
@@ -10,7 +10,7 @@ import configureStore from 'store'
 let initialState = window.reactAppInitialState || '{}'
 initialState = transit.fromJSON(initialState)
 const store = configureStore(browserHistory, initialState)
-const history = syncHistoryWithStore(browserHistory, store)
+const history = syncHistoryWithStore(browserHistory, store, { routerReducer, routerMiddleware })
 
 const reactRootDOM = document.getElementById('react-root')
 
