@@ -65,7 +65,7 @@ const config = {
 				],
 				query: {
 					presets: [
-						'react-native',
+						'react',
 						'es2015',
 						'stage-0',
 					],
