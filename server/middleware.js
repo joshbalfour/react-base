@@ -1,7 +1,7 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { match, RouterContext, createMemoryHistory } from 'react-router'
-import { routerReducer, routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
+import { routerReducer, syncHistoryWithStore } from 'react-router-redux'
 import routes from 'routes'
 import configureStore from 'store'
 import { Provider } from 'react-redux'
@@ -35,10 +35,10 @@ const fetchAllData = (renderProps, store) => {
 
 const configureHistoryAndStore = (url, initialState) => {
 	const memoryHistory = createMemoryHistory(url)
-	let store = configureStore(memoryHistory, initialState, { routerReducer, routerMiddleware })
+	let store = configureStore(memoryHistory, initialState, routerReducer)
 	const history = syncHistoryWithStore(memoryHistory, store)
 	const state = store.getState()
-	store = configureStore(memoryHistory, state, { routerReducer, routerMiddleware })
+	store = configureStore(memoryHistory, state, routerReducer)
 
 	return { store, history }
 }
