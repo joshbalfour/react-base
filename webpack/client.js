@@ -57,12 +57,25 @@ const config = {
 		loaders: [
 			{
 				test: /\.js$/,
-				loaders: ['babel-loader'],
+				loader: 'babel-loader',
 				include: [
 					path.resolve('./src'),
 					path.resolve('./client'),
 					path.resolve('./store'),
 				],
+				query: {
+					presets: [
+						'react-native',
+						'es2015',
+						'stage-0',
+					],
+					plugins: [
+						'transform-async-to-generator',
+						'transform-strict-mode',
+						'transform-class-properties',
+						'transform-object-rest-spread',
+					],
+				},
 			},
 			{
 				test: /\.css$/,
