@@ -3,18 +3,16 @@ import { Router } from 'react-native-router-flux'
 import { Provider } from 'react-redux'
 import { View } from 'react-native'
 
-const AppContainer = ({ routes, store }) => (
+const AppContainer = ({ scenes, store }) => (
 	<Provider store={store}>
 		<View style={{ flex: 1 }}>
-			<Router>
-				{routes}
-			</Router>
+			<Router scenes={scenes} />
 		</View>
 	</Provider>
 )
 
 AppContainer.propTypes = {
-	routes: PropTypes.object.isRequired,
+	scenes: PropTypes.object.isRequired,
 	store: PropTypes.object.isRequired,
 }
 

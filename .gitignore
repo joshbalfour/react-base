@@ -75,3 +75,7 @@ buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
+
+app/index.ios.js.map
+
+app/index.ios.js

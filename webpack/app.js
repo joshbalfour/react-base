@@ -72,6 +72,7 @@ const config = {
 	resolve: {
 		root: [
 			path.resolve('./app'),
+			path.resolve('./app/components'),
 			path.resolve('./src'),
 			path.resolve('./src/components'),
 			path.resolve('./store'),
