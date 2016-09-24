@@ -19,7 +19,7 @@ const htmlTemplate = (
 		<html lang="en-us">
 			<head>
 				<script>
-					window.__initialState__ = ${JSON.stringify(transit.toJSON(initialState))}
+					window.reactAppInitialState = ${JSON.stringify(transit.toJSON(initialState))}
 				</script>
 				<link rel="stylesheet" href="${cssUrl}" type="text/css">
 			</head>
