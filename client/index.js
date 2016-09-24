@@ -9,7 +9,7 @@ import configureStore from 'store'
 
 let initialState = window.reactAppInitialState || '{}'
 initialState = transit.fromJSON(initialState)
-const store = configureStore(browserHistory, initialState)
+const store = configureStore(browserHistory, initialState, routerReducer)
 const history = syncHistoryWithStore(browserHistory, store, routerReducer)
 
 const reactRootDOM = document.getElementById('react-root')
