@@ -49,6 +49,7 @@ const config = {
 				include: [
 					path.resolve('./src'),
 					path.resolve('./client'),
+					path.resolve('./store'),
 				],
 			},
 		],
@@ -56,11 +57,25 @@ const config = {
 		loaders: [
 			{
 				test: /\.js$/,
-				loaders: ['babel-loader'],
+				loader: 'babel-loader',
 				include: [
 					path.resolve('./src'),
 					path.resolve('./client'),
+					path.resolve('./store'),
 				],
+				query: {
+					presets: [
+						'react',
+						'es2015',
+						'stage-0',
+					],
+					plugins: [
+						'transform-async-to-generator',
+						'transform-strict-mode',
+						'transform-class-properties',
+						'transform-object-rest-spread',
+					],
+				},
 			},
 			{
 				test: /\.css$/,
@@ -115,6 +130,7 @@ const config = {
 		root: [
 			path.resolve('./src'),
 			path.resolve('./src/components'),
+			path.resolve('./store'),
 			path.resolve('./src/styles'),
 		],
 		extensions: ['', '.js', '.css'],

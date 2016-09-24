@@ -42,6 +42,7 @@ const config = {
 				loader: 'eslint',
 				include: [
 					path.resolve(__dirname, '../src'),
+					path.resolve(__dirname, '../store'),
 					path.resolve(__dirname, '../server'),
 				],
 			},
@@ -54,7 +55,21 @@ const config = {
 				include: [
 					path.resolve(__dirname, '../src'),
 					path.resolve(__dirname, '../server'),
+					path.resolve(__dirname, '../store'),
 				],
+				query: {
+					presets: [
+						'react',
+						'es2015',
+						'stage-0',
+					],
+					plugins: [
+						'transform-async-to-generator',
+						'transform-strict-mode',
+						'transform-class-properties',
+						'transform-object-rest-spread',
+					],
+				},
 			},
 
 			{
@@ -91,6 +106,7 @@ const config = {
 	resolve: {
 		root: [
 			path.resolve(__dirname, '../src'),
+			path.resolve(__dirname, '../store'),
 			path.resolve(__dirname, '../src/components'),
 			path.resolve(__dirname, '../src/styles'),
 		],
