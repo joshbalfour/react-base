@@ -1,3 +1,5 @@
+####WIP
+
 This repo is designed to be used as a simple (as possible) base for react JS projects which use:
 * Webpack 
 * Babel
