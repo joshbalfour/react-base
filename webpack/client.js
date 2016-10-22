@@ -79,7 +79,7 @@ const config = {
 			},
 			{
 				test: /\.css$/,
-				loader: ExtractPlugin.extract('style', 'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'),
+				loader: ExtractPlugin.extract('style', 'css-loader?modules&-minimize&-sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'),
 			},
 			{
 				test: /\.json$/,
@@ -92,6 +92,10 @@ const config = {
 			{
 				test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
 				loader: 'file-loader',
+			},
+			{
+				test: /\.png$/,
+				loader: 'url-loader?limit=100000',
 			},
 			{ 	test: /\.jpg$/,
 				loader: 'file-loader',
@@ -125,8 +129,8 @@ const config = {
 	resolve: {
 		root: [
 			path.resolve('./src'),
-			path.resolve('./store'),
 			path.resolve('./src/components'),
+			path.resolve('./store'),
 			path.resolve('./src/styles'),
 		],
 		extensions: ['', '.js', '.css'],
